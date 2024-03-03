@@ -50,12 +50,12 @@ linkController.post(
             },
         })
 
-        return c.json({ link })
+        return c.json({ success: true, link })
     }
 )
 
-linkController.get('all', async (c) => {
+linkController.get('/all', async (c) => {
     const links = await prisma.link.findMany()
 
-    return c.json({ links })
+    return c.json({ success: true, links })
 })
