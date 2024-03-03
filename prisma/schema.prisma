@@ -12,3 +12,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Link {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  redirectUrl String
+  slug        String   @unique
+  clicks      Int      @default(0)
+
+  @@index(fields: [slug])
+}

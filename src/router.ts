@@ -1,10 +1,11 @@
 import { Hono } from 'hono'
-import apiRouter from './api/apiRouter'
-import webRouter from './web/webRouter'
+import { redirectController } from './controllers/redirect.controller'
+import { linkController } from './controllers/link.controller'
 
 const router = new Hono()
 
-router.route('/api', apiRouter)
-router.route('/', webRouter)
+router.route('/', redirectController)
+
+router.route('/api/link', linkController)
 
 export default router
