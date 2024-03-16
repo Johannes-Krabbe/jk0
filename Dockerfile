@@ -21,5 +21,3 @@ EXPOSE 8080
 
 # Command to start your application
 CMD ["bun", "src/index.ts"] 
-
-
