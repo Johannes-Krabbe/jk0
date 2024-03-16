@@ -9,7 +9,6 @@ export const linkController = new Hono()
 const zLinkCreateSchema = z.object({
     redirectUrl: z.string(),
     slug: z.string().regex(new RegExp(/^[a-zA-Z0-9_-]+$/)),
-
     password: z.string(),
 })
 
@@ -21,13 +20,13 @@ linkController.post(
 
         if (password !== ENV.CREATION_SECRET) {
             return c.json({
-                error: 'Invalid password',
+                message: 'invalid password',
             })
         }
 
         if (slug === 'api') {
             return c.json({
-                error: 'disallowed slug',
+                message: 'disallowed slug',
             })
         }
 
@@ -39,7 +38,7 @@ linkController.post(
 
         if (existing) {
             return c.json({
-                error: 'Slug already exists',
+                message: 'slug already exists',
             })
         }
 
@@ -50,7 +49,7 @@ linkController.post(
             },
         })
 
-        return c.json({ success: true, link })
+        return c.json({ success: true, message: 'link created', link })
     }
 )
 
